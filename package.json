@@ -9,22 +9,41 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@babel/plugin-proposal-private-methods": "^7.16.0",
+    "@babel/preset-env": "^7.16.0",
+    "@babel/preset-flow": "^7.16.0",
+    "@testing-library/jest-native": "^4.0.2",
     "@testing-library/react": "^12.1.2",
+    "@testing-library/react-native": "^8.0.0",
     "@types/jest": "^27.0.2",
     "jest": "^27.3.1",
     "react-dom": "^17.0.2",
     "react-native": "^0.66.1",
+    "react-test-renderer": "^17.0.2",
     "ts-jest": "^27.0.7",
     "typescript": "^4.4.4"
   },
   "jest": {
+    "haste": {
+      "defaultPlatform": "ios",
+      "platforms": [
+        "android",
+        "ios",
+        "native"
+      ]
+    },
     "resetMocks": true,
     "testEnvironment": "node",
     "testMatch": [
       "**/src/**/*.(spec|test).[tj]s?(x)"
     ],
     "preset": "ts-jest/presets/default-esm",
-    "transform": {},
+    "transform": {
+      "^.+\\.js$": "babel-jest"
+    },
+    "transformIgnorePatterns": [
+      "node_modules/(?!((jest-)?react-native|@react-native(-community)?)/)"
+    ],
     "extensionsToTreatAsEsm": [
       ".ts",
       ".tsx"
@@ -33,7 +52,13 @@
       "ts-jest": {
         "useESM": true
       }
-    }
+    },
+    "setupFiles": [
+      "<rootDir>/node_modules/react-native/jest/setup.js"
+    ],
+    "setupFilesAfterEnv": [
+      "@testing-library/jest-native/extend-expect"
+    ]
   },
   "dependencies": {
     "react": "^17.0.2"

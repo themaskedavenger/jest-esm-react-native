@@ -3,7 +3,8 @@
  */
 
 import React, { ReactElement } from 'react';
-import { Text, View } from 'react-native';
+import Text from 'react-native/Libraries/Text/Text';
+import View from 'react-native/Libraries/Components/View/View';
 
 export type Screen1Props = { text: string };
 
